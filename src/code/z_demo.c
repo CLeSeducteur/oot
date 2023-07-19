@@ -111,6 +111,7 @@ EntranceCutscene sEntranceCutsceneTable[] = {
     { ENTR_GERUDOS_FORTRESS_17, 0, EVENTCHKINF_C7, gGerudoFortressFirstCaptureCs },
     { ENTR_DEATH_MOUNTAIN_CRATER_1, 2, EVENTCHKINF_B9, gDeathMountainCraterIntroCs },
     { ENTR_KOKIRI_FOREST_12, 2, EVENTCHKINF_C6, gKokiriForestDekuSproutCs },
+    { ENTR_FIRELINKSHRINE_0_1, 2, 0x0F, FlyToFirelink },
 };
 
 void* sUnusedEntranceCsList[] = {

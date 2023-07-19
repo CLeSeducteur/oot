@@ -1,5 +1,5 @@
 #include "mycustomactor.h"
-#include "assets/objects/object_blackcrow/blackcrow_skel.h" /*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*/
+#include "assets/objects/object_blackcrow/blackcrow_skel.h" /*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*/
 #include "assets/scenes/test_levels/nua_test/nua_test_scene.h"
 
 #define FLAGS (ACTOR_FLAG_25 | ACTOR_FLAG_4 | ACTOR_FLAG_5 )
@@ -50,7 +50,7 @@ void CustomActor_SetupAction(CustomActor* this, CustomActorActionFunc actionFunc
 
 void CustomActor_Init(CustomActor* this, PlayState* play) {
 
-    Path* path = &play->setupPathList[0x0000];
+    Path* path = &play->pathList[0x0000];
 
     SkelAnime_InitFlex(play, &this->skelAnime, &blackcrow_skel, &blackcrow_skelCrow_flyAnim, NULL, NULL, 18); //FlyingSkeleton
     SkelAnime_InitFlex(play, &this->skelAnime2, &blackcrow_skel2, &blackcrow_skel2TestrestAnim , NULL, NULL, 12); //GroundSkeleton
@@ -118,7 +118,7 @@ void CustomActor_WaitForPlayer(CustomActor* this, PlayState* play) //blackcrow_s
 {
     if (this->actor.xzDistToPlayer < 350.0f) {
         this->InBounds = 2;
-        play->csCtx.segment = SEGMENTED_TO_VIRTUAL(LeaveAsylum);
+        play->csCtx.script = SEGMENTED_TO_VIRTUAL(LeaveAsylum);
         gSaveContext.cutsceneTrigger = 1;
         CustomActor_SetupAction(this,CustomActor_CrowAppear);
     }
@@ -147,7 +147,7 @@ void CustomActor_CrowAppear(CustomActor* this, PlayState* play)
         CustomActor_PathInit(this, play);
         this->actor.shape.rot.y = this->actor.world.rot.y + 0x3ffe;
 
-        Audio_PlayActorSfx2(&this->actor, NA_SE_EN_OWL_FLUTTER);
+        Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER);
 
         Animation_Change(this->curSkelAnime, &blackcrow_skelSlowrevealAnim, 1.0f, 0.0f, Animation_GetLastFrame(&blackcrow_skelSlowrevealAnim), ANIMMODE_ONCE, 0.0f); //35 frames
         CustomActor_SetupAction(this, CustomActor_CrowDrawsIn);
@@ -194,7 +194,7 @@ void CustomActor_CrowGrabsPlayer(CustomActor* this, PlayState* play)
 
         }
         if (this->timer == 268) {
-            Audio_PlayActorSfx2(&this->actor, NA_SE_EN_KAICHO_FLUTTER);
+            Audio_PlayActiveSfx( NA_SE_EN_KAICHO_FLUTTER);
         }
     } else {
 
@@ -228,7 +228,7 @@ void CustomActor_FlyAway(CustomActor* this, PlayState* play)
         player->actor.world.rot.y = this->actor.world.rot.y -0x3ffe;
 
         if (this->timer == 335) {
-            Audio_PlayActorSfx2(&this->actor, NA_SE_EN_OWL_FLUTTER);
+            Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER);
         }
 
     }
@@ -241,7 +241,7 @@ void CustomActor_FlyAway(CustomActor* this, PlayState* play)
 
 void CustomActor_PathInit(CustomActor* this, PlayState* play)
 {
-    Path* path = &play->setupPathList[0x0000];
+    Path* path = &play->pathList[0x0000];
     Vec3s* pointPos;
     Vec3s* nextPos;
     s16 pointAngle;
@@ -387,7 +387,7 @@ void CustomActor_FlyCurve(CustomActor* this, PlayState* play)
 
         if (this->timer == 260)
         {
-            Audio_PlayActorSfx2(&this->actor, NA_SE_EN_OWL_FLUTTER); //not working ?
+            Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER); //not working ?
         }
     }
     else 
