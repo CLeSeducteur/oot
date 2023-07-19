@@ -35,6 +35,7 @@
 /* 0x17 */ DEFINE_SCENE(jyasinboss_scene, none, SCENE_JYASINBOSS, SDC_DEFAULT, 0, 0)
 /* 0x18 */ DEFINE_SCENE(HAKAdan_bs_scene, none, SCENE_HAKADAN_BS, SDC_HAKADAN, 0, 0)
 /* 0x19 */ DEFINE_SCENE(ganon_boss_scene, none, SCENE_GANON_BOSS, SDC_DEFAULT, 0, 0)
+// Debug-only scenes
 /* 0x1A */ DEFINE_SCENE(ganon_final_scene, none, SCENE_GANON_FINAL, SDC_GANON_FINAL, 0, 0)
 /* 0x1B */ DEFINE_SCENE(entra_scene, none, SCENE_ENTRA, SDC_DEFAULT, 0, 0)
 /* 0x1C */ DEFINE_SCENE(entra_n_scene, none, SCENE_ENTRA_N, SDC_DEFAULT, 0, 0)
@@ -110,7 +111,6 @@
 /* 0x62 */ DEFINE_SCENE(spot18_scene, g_pn_41, SCENE_SPOT18, SDC_SPOT18, 0, 0)
 /* 0x63 */ DEFINE_SCENE(spot20_scene, g_pn_42, SCENE_SPOT20, SDC_SPOT20, 0, 0)
 /* 0x64 */ DEFINE_SCENE(ganon_tou_scene, g_pn_43, SCENE_GANON_TOU, SDC_GANON_CASTLE_EXTERIOR, 0, 0)
-// Debug-only scenes
 /* 0x65 */ DEFINE_SCENE(test01_scene, none, SCENE_TEST01, SDC_CALM_WATER, 0, 0)
 /* 0x66 */ DEFINE_SCENE(besitu_scene, none, SCENE_BESITU, SDC_BESITU, 0, 0)
 /* 0x67 */ DEFINE_SCENE(depth_test_scene, none, SCENE_DEPTH_TEST, SDC_DEFAULT, 0, 0)
@@ -120,6 +120,6 @@
 /* 0x6B */ DEFINE_SCENE(hairal_niwa2_scene, g_pn_12, SCENE_HAIRAL_NIWA2, SDC_HAIRAL_NIWA, 0, 0)
 /* 0x6C */ DEFINE_SCENE(sasatest_scene, none, SCENE_SASATEST, SDC_DEFAULT, 0, 0)
 /* 0x6D */ DEFINE_SCENE(testroom_scene, none, SCENE_TESTROOM, SDC_DEFAULT, 0, 0)
-
-/* 0x66 */ DEFINE_SCENE(nua_test_scene, none, SCENE_NUA_TEST, SDC_CALM_WATER, 0, 0)
-/* 0x67 */ DEFINE_SCENE(firelinkshrine_scene, none, SCENE_FIRELINKSHRINE, SDC_BOWLING, 0, 0)
+// Added scenes
+/* 0x6E */ DEFINE_SCENE(nua_test_scene, none, SCENE_NUA_TEST, SDC_BOWLING, 0, 0)
+/* 0x6F */ DEFINE_SCENE(firelinkshrine_scene, none, SCENE_FIRELINKSHRINE, SDC_BOWLING, 0, 0)

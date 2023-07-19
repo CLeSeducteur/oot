@@ -276,29 +276,32 @@ static SceneSelectEntry sScenes[] = {
     // "115: Hyrule Cutscenes" (Cutscene Map)
     { "115:" GFXP_KATAKANA "ﾊｲﾗﾙ ﾃﾞﾓ", MapSelect_LoadGame, ENTR_HIRAL_DEMO_0 },
     // "116: Special Room (Treasure Chest Warp)" (Ganondorf Test Room)
-    { "116:" GFXP_HIRAGANA "ﾍﾞｯｼﾂ (ﾀｶﾗﾊﾞｺ" GFXP_KATAKANA "ﾜｰﾌﾟ)", MapSelect_LoadGame, ENTR_BESITU_0 },
+    //{ "116:" GFXP_HIRAGANA "ﾍﾞｯｼﾂ (ﾀｶﾗﾊﾞｺ" GFXP_KATAKANA "ﾜｰﾌﾟ)", MapSelect_LoadGame, ENTR_BESITU_0 },
     // "117: Sasaki Test" (Sasa Test)
-    { "117:" GFXP_HIRAGANA "ｻｻ" GFXP_KATAKANA "ﾃｽﾄ", MapSelect_LoadGame, ENTR_SASATEST_0 },
+    //{ "117:" GFXP_HIRAGANA "ｻｻ" GFXP_KATAKANA "ﾃｽﾄ", MapSelect_LoadGame, ENTR_SASATEST_0 },
     // "118: Test Map" (Jungle Gym)
-    { "118:" GFXP_KATAKANA "ﾃｽﾄﾏｯﾌﾟ", MapSelect_LoadGame, ENTR_TEST01_0 },
+    //{ "118:" GFXP_KATAKANA "ﾃｽﾄﾏｯﾌﾟ", MapSelect_LoadGame, ENTR_TEST01_0 },
     // "119: Test Room" (Treasure Chest Room)
-    { "119:" GFXP_KATAKANA "ﾃｽﾄﾙｰﾑ", MapSelect_LoadGame, ENTR_TESTROOM_0 },
+    //{ "119:" GFXP_KATAKANA "ﾃｽﾄﾙｰﾑ", MapSelect_LoadGame, ENTR_TESTROOM_0 },
     // "120: Stalfos Miniboss Room" (Stalfos Miniboss Room)
-    { "120:" GFXP_HIRAGANA "ﾁｭｳ" GFXP_KATAKANA "ｽﾀﾛﾌｫｽ" GFXP_HIRAGANA "ﾍﾞﾔ", MapSelect_LoadGame, ENTR_SYOTES_0 },
+    //{ "120:" GFXP_HIRAGANA "ﾁｭｳ" GFXP_KATAKANA "ｽﾀﾛﾌｫｽ" GFXP_HIRAGANA "ﾍﾞﾔ", MapSelect_LoadGame, ENTR_SYOTES_0 },
     // "121: Boss Stalfos Room" (Stalfos Boss Room)
-    { "121:" GFXP_KATAKANA "ﾎﾞｽｽﾀﾛﾌｫｽ" GFXP_HIRAGANA "ﾍﾞﾔ", MapSelect_LoadGame, ENTR_SYOTES2_0 },
+    //{ "121:" GFXP_KATAKANA "ﾎﾞｽｽﾀﾛﾌｫｽ" GFXP_HIRAGANA "ﾍﾞﾔ", MapSelect_LoadGame, ENTR_SYOTES2_0 },
     // "122: Stal" (Sutaru)
-    { "122:Sutaru", MapSelect_LoadGame, ENTR_SUTARU_0 },
+    //{ "122:Sutaru", MapSelect_LoadGame, ENTR_SUTARU_0 },
     // "123: Test Area" (Shooting Gallery)
     { "123:jikkenjyou", MapSelect_LoadGame, ENTR_TEST_SYATEKIJYOU_0 },
     // "124: Depth Test" (Depth Test)
-    { "124:depth" GFXP_KATAKANA "ﾃｽﾄ", MapSelect_LoadGame, ENTR_DEPTH_TEST_0 },
-    // "125: Hyrule Garden Game 2" (Early Hyrule Garden Game)
+    //{ "124:depth" GFXP_KATAKANA "ﾃｽﾄ", MapSelect_LoadGame, ENTR_DEPTH_TEST_0 },
+    //"125: Hyrule Garden Game 2" (Early Hyrule Garden Game)
     { "125:" GFXP_KATAKANA "ﾊｲﾗﾙ" GFXP_HIRAGANA "ﾆﾜ" GFXP_KATAKANA "ｹﾞｰﾑ2", MapSelect_LoadGame, ENTR_HAIRAL_NIWA2_0 },
     // "126: Northern Undead Asylum"
     { "126: NorthenUndeadAsylum", MapSelect_LoadGame, ENTR_NUA_TEST_0 },
     // "127: Firelink Shrine"
     { "127: Firelink_Shrine", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0 },
+    // "128: Firelink Shrine (Fly To FireLink)"
+    { "128: Firelink_Shrine (Fly To Firelink)", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0_1 },
+
     // "title" (Title Screen)
     { "title", (void*)MapSelect_LoadTitle, 0 },
 };

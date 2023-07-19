@@ -3373,10 +3373,23 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_MyCustomActor"
+    include "build/src/overlays/actors/ovl_MyCustomActor/mycustomactor.o"
+    include "build/src/overlays/actors/ovl_MyCustomActor/ovl_MyCustomActor_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"
     number 4
+endseg
+
+beginseg
+    name "object_blackcrow"
+    romalign 0x1000
+    include "build/assets/objects/object_blackcrow/blackcrow_skel.o"
+    number 6
 endseg
 
 beginseg
@@ -6811,97 +6824,6 @@ beginseg
     romalign 0x1000
     include "build/src/elf_message/elf_message_ydan.o"
     number 0
-endseg
-
-beginseg
-    name "ydan_scene"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_scene.o"
-    number 2
-endseg
-
-beginseg
-    name "ydan_room_0"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_0.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_1"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_1.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_2"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_2.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_3"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_3.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_4"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_4.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_5"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_5.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_6"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_6.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_7"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_7.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_8"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_8.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_9"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_9.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_10"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_10.o"
-    number 3
-endseg
-
-beginseg
-    name "ydan_room_11"
-    romalign 0x1000
-    include "build/assets/scenes/dungeons/ydan/ydan_room_11.o"
-    number 3
 endseg
 
 beginseg
@@ -10472,4 +10394,151 @@ beginseg
     name "softsprite_matrix_static"
     romalign 0x1000
     include "build/baserom/softsprite_matrix_static.o"
+endseg
+
+beginseg
+    name "firelinkshrine_scene"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_scene.o"
+    number 2
+endseg
+
+beginseg
+    name "firelinkshrine_room_0"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_room_0.o"
+    number 3
+endseg
+
+beginseg
+    name "firelinkshrine_room_1"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_room_1.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_scene"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_scene.o"
+    number 2
+endseg
+
+beginseg
+    name "nua_test_room_0"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_0.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_1"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_1.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_2"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_2.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_3"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_3.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_4"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_4.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_5"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_5.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_6"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_6.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_7"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_7.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_8"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_8.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_9"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_9.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_10"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_10.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_11"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_11.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_12"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_12.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_13"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_13.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_14"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_14.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_15"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_15.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_16"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_16.o"
+    number 3
 endseg

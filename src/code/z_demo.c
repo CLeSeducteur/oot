@@ -29,6 +29,8 @@
 
 #include "assets/scenes/misc/hakaana_ouke/hakaana_ouke_scene.h"
 
+#include "assets/scenes/test_levels/firelinkshrine/firelinkshrine_scene.h"
+
 u16 D_8011E1C0 = 0;
 u16 D_8011E1C4 = 0;
 
@@ -86,7 +88,7 @@ EntranceCutscene sEntranceCutsceneTable[] = {
     { ENTR_SPOT12_17, 0, EVENTCHKINF_C7, gGerudoFortressFirstCaptureCs },
     { ENTR_SPOT17_1, 2, EVENTCHKINF_B9, gDeathMountainCraterIntroCs },
     { ENTR_SPOT04_12, 2, EVENTCHKINF_C6, gKokiriForestDekuSproutCs },
-    /*{ ENTR_FIRELINKSHRINE_0_1, 2, 0x0F, FlyToFirelink }*/
+    { ENTR_FIRELINKSHRINE_0_1, 2, 0x0F, FlyToFirelink },
 };
 
 // Unused, seems to be an early list of dungeon entrance cutscene locations
@@ -615,11 +617,10 @@ void Cutscene_Command_Terminator(PlayState* play, CutsceneContext* csCtx, CsCmdB
                 play->transitionTrigger = TRANS_TRIGGER_START;
                 play->transitionType = TRANS_TYPE_FADE_BLACK;
                 break;
-            case 15:
-                play->nextEntranceIndex = ENTR_TOKINOMA_0;
+            case 15: //to fire link shrine
+                play->nextEntranceIndex = ENTR_FIRELINKSHRINE_0_1;
                 play->transitionTrigger = TRANS_TRIGGER_START;
-                gSaveContext.cutsceneIndex = 0xFFF4;
-                play->transitionType = TRANS_TYPE_FADE_WHITE;
+                play->transitionType = TRANS_TYPE_FADE_BLACK;
                 break;
             case 16:
                 play->nextEntranceIndex = ENTR_TOKINOMA_0;

@@ -32,6 +32,8 @@ typedef struct CustomActor {
 
     s32 timer;
 
+    u8 InBounds;
+
     CustomActorActionFunc actionFunc;
 
 } CustomActor;
