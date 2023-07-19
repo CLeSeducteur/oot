@@ -20,7 +20,7 @@ void BgDodoago_OpenJaw(BgDodoago* this, PlayState* play);
 void BgDodoago_DoNothing(BgDodoago* this, PlayState* play);
 void BgDodoago_LightOneEye(BgDodoago* this, PlayState* play);
 
-const ActorInit Bg_Dodoago_InitVars = {
+ActorInit Bg_Dodoago_InitVars = {
     ACTOR_BG_DODOAGO,
     ACTORCAT_BG,
     FLAGS,
@@ -113,7 +113,7 @@ void BgDodoago_Init(Actor* thisx, PlayState* play) {
     CollisionHeader* colHeader = NULL;
 
     Actor_ProcessInitChain(&this->dyna.actor, sInitChain);
-    DynaPolyActor_Init(&this->dyna, DPM_UNK);
+    DynaPolyActor_Init(&this->dyna, 0);
     CollisionHeader_GetVirtual(&gDodongoLowerJawCol, &colHeader);
     this->dyna.bgId = DynaPoly_SetBgActor(play, &play->colCtx.dyna, &this->dyna.actor, colHeader);
     ActorShape_Init(&this->dyna.actor.shape, 0.0f, NULL, 0.0f);
@@ -290,7 +290,7 @@ void BgDodoago_Update(Actor* thisx, PlayState* play) {
                 // disable the bomb catcher for a few seconds
                 this->dyna.actor.parent = &bomb->actor;
                 bomb->timer = 50;
-                bomb->actor.speedXZ = 0.0f;
+                bomb->actor.speed = 0.0f;
                 sTimer = 0;
             }
         }
