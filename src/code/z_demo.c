@@ -30,8 +30,11 @@
 
 #include "assets/scenes/misc/hakaana_ouke/hakaana_ouke_scene.h"
 
+#include "assets/scenes/test_levels/firelinkshrine/firelinkshrine_scene.h"
+
 u16 sCurTextId = 0;
 u16 sCurOcarinaAction = 0;
+
 
 typedef void (*CutsceneHandler)(PlayState*, CutsceneContext*);
 
@@ -108,6 +111,7 @@ EntranceCutscene sEntranceCutsceneTable[] = {
     { ENTR_GERUDOS_FORTRESS_17, 0, EVENTCHKINF_C7, gGerudoFortressFirstCaptureCs },
     { ENTR_DEATH_MOUNTAIN_CRATER_1, 2, EVENTCHKINF_B9, gDeathMountainCraterIntroCs },
     { ENTR_KOKIRI_FOREST_12, 2, EVENTCHKINF_C6, gKokiriForestDekuSproutCs },
+    { ENTR_FIRELINKSHRINE_0_1, 2, 0x0F, FlyToFirelink },
 };
 
 void* sUnusedEntranceCsList[] = {
@@ -694,11 +698,10 @@ void CutsceneCmd_Destination(PlayState* play, CutsceneContext* csCtx, CsCmdDesti
                 play->transitionType = TRANS_TYPE_FADE_BLACK;
                 break;
 
-            case CS_DEST_TEMPLE_OF_TIME_KOKIRI_EMERALD_RESTORED:
-                play->nextEntranceIndex = ENTR_TEMPLE_OF_TIME_0;
+            case CS_DEST_TEMPLE_OF_TIME_KOKIRI_EMERALD_RESTORED: //firelink shrine
+                play->nextEntranceIndex = ENTR_FIRELINKSHRINE_0_1;
                 play->transitionTrigger = TRANS_TRIGGER_START;
-                gSaveContext.cutsceneIndex = 0xFFF4;
-                play->transitionType = TRANS_TYPE_FADE_WHITE;
+                play->transitionType = TRANS_TYPE_FADE_BLACK;
                 break;
 
             case CS_DEST_TEMPLE_OF_TIME_GORON_RUBY_RESTORED:

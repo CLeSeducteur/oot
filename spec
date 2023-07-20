@@ -36,7 +36,7 @@ beginseg
     include "build/src/libultra/os/initialize.o"
     include "build/src/libultra/libc/ll.o"
     include "build/src/libultra/os/exceptasm.o"
-    include "build/src/libultra/os/thread.o"
+    include "build/src/libultra/os/dequeuethread.o"
     include "build/src/libultra/os/destroythread.o"
     include "build/src/libultra/libc/bzero.o"
     include "build/src/libultra/os/parameters.o"
@@ -353,7 +353,6 @@ beginseg
     include "build/src/code/z_sample.o"
     include "build/src/code/code_80097A00.o"
     include "build/src/code/z_scene.o"
-    include "build/src/code/object_table.o"
     include "build/src/code/z_scene_table.o"
     include "build/src/code/z_skelanime.o"
     include "build/src/code/z_skin.o"
@@ -385,10 +384,9 @@ beginseg
     include "build/src/code/z_kaleido_scope_call.o"
     include "build/src/code/z_play.o"
     include "build/src/code/PreRender.o"
-    include "build/src/code/TwoHeadGfxArena.o"
     include "build/src/code/TwoHeadArena.o"
-    include "build/src/code/audio_stop_all_sfx.o"
-    include "build/src/code/audio_thread_manager.o"
+    include "build/src/code/code_800C3C20.o"
+    include "build/src/code/audioMgr.o"
     include "build/src/code/title_setup.o"
     include "build/src/code/game.o"
     include "build/src/code/gamealloc.o"
@@ -409,30 +407,28 @@ beginseg
     include "build/src/code/irqmgr.o"
     include "build/src/code/debug_malloc.o"
     include "build/src/code/fault.o"
-    include "build/src/code/fault_drawer.o"
-#ifndef NON_MATCHING
     include "build/data/fault.bss.o"
+    include "build/src/code/fault_drawer.o"
     include "build/data/fault_drawer.bss.o"
-#endif
     include "build/src/code/kanread.o"
     include "build/src/code/ucode_disas.o"
     pad_text // audio library aligned to 32 bytes?
-    include "build/src/audio/lib/data.o"
-    include "build/src/audio/lib/synthesis.o"
-    include "build/src/audio/lib/heap.o"
-    include "build/src/audio/lib/load.o"
-    include "build/src/audio/lib/thread.o"
-    include "build/src/audio/lib/dcache.o"
-    include "build/src/audio/lib/aisetnextbuf.o"
-    include "build/src/audio/lib/playback.o"
-    include "build/src/audio/lib/effects.o"
-    include "build/src/audio/lib/seqplayer.o"
-    include "build/src/audio/general.o"
-    include "build/src/audio/sfx_params.o"
-    include "build/src/audio/sfx.o"
-    include "build/src/audio/sequence.o"
-    include "build/src/audio/data.o"
-    include "build/src/audio/session_config.o"
+    include "build/src/code/audio_data.o"
+    include "build/src/code/audio_synthesis.o"
+    include "build/src/code/audio_heap.o"
+    include "build/src/code/audio_load.o"
+    include "build/src/code/code_800E4FE0.o"
+    include "build/src/code/code_800E6840.o"
+    include "build/src/libultra/io/aisetnextbuf.o"
+    include "build/src/code/audio_playback.o"
+    include "build/src/code/audio_effects.o"
+    include "build/src/code/audio_seqplayer.o"
+    include "build/src/code/code_800EC960.o"
+    include "build/src/code/audio_sfx_params.o"
+    include "build/src/code/code_800F7260.o"
+    include "build/src/code/code_800F9280.o"
+    include "build/src/code/audio_external_data.o"
+    include "build/src/code/audio_init_params.o"
     include "build/src/code/logseverity.o"
     include "build/src/code/gfxprint.o"
     include "build/src/code/rcp_utils.o"
@@ -2567,7 +2563,7 @@ endseg
 beginseg
     name "ovl_En_Mb"
     include "build/src/overlays/actors/ovl_En_Mb/z_en_mb.o"
-	include "build/src/overlays/actors/ovl_En_Mb/ovl_En_Mb_reloc.o"
+    include "build/src/overlays/actors/ovl_En_Mb/ovl_En_Mb_reloc.o"
 endseg
 
 beginseg
@@ -3377,10 +3373,23 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_MyCustomActor"
+    include "build/src/overlays/actors/ovl_MyCustomActor/mycustomactor.o"
+    include "build/src/overlays/actors/ovl_MyCustomActor/ovl_MyCustomActor_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"
     number 4
+endseg
+
+beginseg
+    name "object_blackcrow"
+    romalign 0x1000
+    include "build/assets/objects/object_blackcrow/blackcrow_skel.o"
+    number 6
 endseg
 
 beginseg
@@ -10476,4 +10485,151 @@ beginseg
     name "softsprite_matrix_static"
     romalign 0x1000
     include "build/baserom/softsprite_matrix_static.o"
+endseg
+
+beginseg
+    name "firelinkshrine_scene"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_scene.o"
+    number 2
+endseg
+
+beginseg
+    name "firelinkshrine_room_0"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_room_0.o"
+    number 3
+endseg
+
+beginseg
+    name "firelinkshrine_room_1"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/firelinkshrine/firelinkshrine_room_1.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_scene"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_scene.o"
+    number 2
+endseg
+
+beginseg
+    name "nua_test_room_0"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_0.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_1"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_1.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_2"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_2.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_3"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_3.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_4"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_4.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_5"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_5.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_6"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_6.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_7"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_7.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_8"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_8.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_9"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_9.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_10"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_10.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_11"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_11.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_12"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_12.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_13"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_13.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_14"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_14.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_15"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_15.o"
+    number 3
+endseg
+
+beginseg
+    name "nua_test_room_16"
+    romalign 0x1000
+    include "build/assets/scenes/test_levels/nua_test/nua_test_room_16.o"
+    number 3
 endseg
