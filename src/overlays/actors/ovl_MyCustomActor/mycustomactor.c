@@ -23,8 +23,6 @@ void CustomActor_GroundBehaviour(CustomActor* this, PlayState* play);
 //Misc
 void CustomActor_ChangeMode(CustomActor* this, SkelAnime* skelAnime, AnimationHeader* animation);
 
-void CustomActor_TestingShit(CustomActor* this, PlayState* play);
-
 //AsylumStuff
 void CustomActor_WaitForPlayer(CustomActor* this, PlayState* play);
 void CustomActor_CrowAppear(CustomActor* this, PlayState* play);
@@ -34,7 +32,7 @@ void CustomActor_FlyAway(CustomActor* this, PlayState* play);
 
 const ActorInit MyCustomActor_InitVars = {
     ACTOR_MYCUSTOM,
-    ACTORCAT_PROP, //necessary for cutscene
+    ACTORCAT_PROP, //necessary for cutscene//
     FLAGS,
     OBJECT_BLACKCROW,
     sizeof(CustomActor),
@@ -86,18 +84,19 @@ void CustomActor_Init(CustomActor* this, PlayState* play) {
             CustomActor_SetupAction(this, CustomActor_GroundBehaviour);
         }
 
-    } else if (play->sceneId == SCENE_NUA_TEST) { // if crow in asylum
+    } else { // if crow in asylum
         CustomActor_ChangeMode(this, &this->skelAnime, &blackcrow_skelCrowrevealAnim);
         this->InBounds = 1;
         this->timer = 0;
         /////////////Init Path
-        this->endWaypoint = path->count - 1;
+        //this->endWaypoint = path->count - 1;
         this->currentWaypoint = 0;
         this->nextWaypoint = 1;
         this->pathDirection = 1;
         this->FrameCount = 10.0f;
         CustomActor_SetupAction(this, CustomActor_WaitForPlayer);
     }
+
 
 }
 
@@ -116,6 +115,7 @@ void CustomActor_ChangeFlags(CustomActor* this, PlayState* play)
 
 void CustomActor_WaitForPlayer(CustomActor* this, PlayState* play) //blackcrow_skelCrowrevealAnim
 {
+    this->timer = 0;
     if (this->actor.xzDistToPlayer < 350.0f) {
         this->InBounds = 2;
         play->csCtx.script = SEGMENTED_TO_VIRTUAL(LeaveAsylum);
@@ -147,7 +147,7 @@ void CustomActor_CrowAppear(CustomActor* this, PlayState* play)
         CustomActor_PathInit(this, play);
         this->actor.shape.rot.y = this->actor.world.rot.y + 0x3ffe;
 
-        Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER);
+        Actor_PlaySfx(&this->actor, NA_SE_EN_OWL_FLUTTER);
 
         Animation_Change(this->curSkelAnime, &blackcrow_skelSlowrevealAnim, 1.0f, 0.0f, Animation_GetLastFrame(&blackcrow_skelSlowrevealAnim), ANIMMODE_ONCE, 0.0f); //35 frames
         CustomActor_SetupAction(this, CustomActor_CrowDrawsIn);
@@ -178,13 +178,13 @@ void CustomActor_CrowDrawsIn(CustomActor* this, PlayState* play)
 
 void CustomActor_CrowGrabsPlayer(CustomActor* this, PlayState* play) 
 {
+    this->timer++;
     if (this->timer >= 300) {
-        this->timer++;
         if (this->timer >= 320) {
 
             this->currentWaypoint+=2 ;
             this->nextWaypoint+=2 ;
-            this->FrameCount = 400.0f;
+            this->FrameCount = 500.0f;
 
             CustomActor_PathInit(this, play);
             this->actor.shape.rot.y = this->actor.world.rot.y ;
@@ -193,19 +193,19 @@ void CustomActor_CrowGrabsPlayer(CustomActor* this, PlayState* play)
             CustomActor_SetupAction(this, CustomActor_FlyAway);
 
         }
-        if (this->timer == 268) {
-            Audio_PlayActiveSfx( NA_SE_EN_KAICHO_FLUTTER);
-        }
     } else {
-
-        this->timer++;
 
         SkelAnime_Update(this->curSkelAnime);
 
         Math_StepToF(&this->actor.world.pos.x, this->nextPosF.x, this->SpeedToPoint);
         Math_StepToF(&this->actor.world.pos.z, this->nextPosF.z, this->SpeedToPoint);
         Math_StepToF(&this->actor.world.pos.y, this->nextPosF.y, this->SpeedToPoint);
+
+        if (this->timer == 295) {
+            Actor_PlaySfx(&this->actor, NA_SE_EN_KAICHO_FLUTTER);
+        }
     }
+
 }
 
 void CustomActor_FlyAway(CustomActor* this, PlayState* play)
@@ -228,7 +228,7 @@ void CustomActor_FlyAway(CustomActor* this, PlayState* play)
         player->actor.world.rot.y = this->actor.world.rot.y -0x3ffe;
 
         if (this->timer == 335) {
-            Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER);
+            Actor_PlaySfx(&this->actor, NA_SE_EN_OWL_FLUTTER);
         }
 
     }
@@ -245,7 +245,7 @@ void CustomActor_PathInit(CustomActor* this, PlayState* play)
     Vec3s* pointPos;
     Vec3s* nextPos;
     s16 pointAngle;
-    this->endWaypoint = path->count - 1;
+    //this->endWaypoint = path->count - 1;
 
     ///////////////Go to starting point
     pointPos = (Vec3s*)SEGMENTED_TO_VIRTUAL(path->points) + this->currentWaypoint;
@@ -273,22 +273,6 @@ void CustomActor_PathInit(CustomActor* this, PlayState* play)
     //Speed to point
     this->SpeedToPoint =  Actor_WorldDistXYZToPoint(&this->actor, &this->nextPosF) / this->FrameCount; //frames = 44 (temps) v = d/t
     //
-
-}
-
-void CustomActor_TestingShit(CustomActor* this, PlayState* play)
-{
-    //creer new path faire follow le path et tester la rot pourquoi elle merde
-    Player* player = GET_PLAYER(play);
-
-    //s16 playerAngle = this->actor.yawTowardsPlayer + 0x3ffe;
-    s16 playerAngle = Math_Vec3f_Yaw(&this->actor.world.pos, &player->actor.world.pos) + 0x3ffe;
-
-    this->actor.world.rot.z = 0x3ffe;
-
-    Math_SmoothStepToS(&this->actor.world.rot.y, playerAngle , 1, 0x444, 0x1);
-
-    SkelAnime_Update(this->curSkelAnime);
 
 }
 
@@ -387,7 +371,7 @@ void CustomActor_FlyCurve(CustomActor* this, PlayState* play)
 
         if (this->timer == 260)
         {
-            Audio_PlayActiveSfx( NA_SE_EN_OWL_FLUTTER); //not working ?
+            Actor_PlaySfx(&this->actor, NA_SE_EN_OWL_FLUTTER);
         }
     }
     else 
@@ -417,7 +401,8 @@ void CustomActor_GroundBehaviour(CustomActor* this, PlayState* play)
 
 
 void CustomActor_Destroy(CustomActor* this, PlayState* play) {
-
+    SkelAnime_Free(&this->skelAnime, play);
+    SkelAnime_Free(&this->skelAnime2, play);
 }
 
 void CustomActor_Update(CustomActor* this, PlayState* play) {
@@ -441,7 +426,6 @@ void CustomActor_Draw(CustomActor* this, PlayState* play) {
 
     OPEN_DISPS(play->state.gfxCtx, __FILE__, __LINE__);
 
-    /*
     gfx = POLY_OPA_DISP + 1;
     gSPDisplayList(OVERLAY_DISP++, gfx);
 
@@ -485,7 +469,7 @@ void CustomActor_Draw(CustomActor* this, PlayState* play) {
 
     GfxPrint_SetColor(&printer, 0, 0, 225, 255);
     GfxPrint_SetPos(&printer, 1, 1);
-    GfxPrint_Printf(&printer, "In bounds: %d", this->InBounds );
+    GfxPrint_Printf(&printer, "timer: %d", this->timer );
     GfxPrint_SetColor(&printer, 0, 0, 225, 255);
     GfxPrint_SetPos(&printer, 1, 2);
     GfxPrint_Printf(&printer, "dist : %f", this->actor.xzDistToPlayer );
@@ -496,7 +480,6 @@ void CustomActor_Draw(CustomActor* this, PlayState* play) {
     gSPEndDisplayList(gfx++);
     gSPBranchList(POLY_OPA_DISP, gfx);
     POLY_OPA_DISP = gfx;
-    */
 
     CLOSE_DISPS(play->state.gfxCtx, __FILE__, __LINE__);
 

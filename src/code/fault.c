@@ -361,10 +361,14 @@ void Fault_Sleep(u32 msec) {
     Fault_SleepImpl(msec);
 }
 
+/*
 #ifndef AVOID_UB
 void PadMgr_RequestPadData(Input* inputs, s32 gameRequest);
 #endif
+*/
+void PadMgr_RequestPadData(PadMgr* padmgr, Input* input, s32 mode);
 
+/*
 void Fault_PadCallback(Input* inputs) {
     //! @bug This function is not called correctly, it is missing a leading PadMgr* argument. This
     //! renders the crash screen unusable.
@@ -376,6 +380,9 @@ void Fault_PadCallback(Input* inputs) {
     // Guarantee crashing behavior: false -> NULL, previous value in a2 is more often non-zero than zero
     PadMgr_RequestPadData((PadMgr*)inputs, NULL, true);
 #endif
+    */
+    void Fault_PadCallback(Input* input) {
+    PadMgr_RequestPadData(&gPadMgr, input, 0);
 }
 
 void Fault_UpdatePadImpl(void) {
