@@ -81,7 +81,6 @@ void myPlayerDraw(Actor* player, PlayState* play) {
 }
 
 #define THIS ((EnAsylum*)thisx)
-#define PillarID 0x6 //PillarActorNumber Change it if neccessary.
 
 //If you need to change the damage, ctrl+f -> ".info.toucher.damage"
 //Changing hp is in "init"
@@ -301,7 +300,7 @@ static DamageTable sDamageTable = { //changement à faire ici
     /* Normal arrow  */ DMG_ENTRY(30, 0xE),
     /* Hammer swing  */ DMG_ENTRY(2, 0xF),
     /* Hookshot      */ DMG_ENTRY(0, 0xD),
-    /* Kokiri sword  */ DMG_ENTRY(2, 0xF),
+    /* Kokiri sword  */ DMG_ENTRY(1, 0xF),
     /* Master sword  */ DMG_ENTRY(2, 0xF),
     /* Giant's Knife */ DMG_ENTRY(4, 0xF),
     /* Fire arrow    */ DMG_ENTRY(2, 0xE),
@@ -372,7 +371,7 @@ void En_Asylum_Init(EnAsylum* this, PlayState* play) {
         Actor_Kill(&this->actor);
     }
 
-    Flags_SetSwitch(play, (this->actor.params & 0xFF00) >> 8 ); // hop ça vire //
+    //Flags_SetSwitch(play, (this->actor.params & 0xFF00) >> 8 ); // hop ça vire //
 
     if ( !Flags_GetSwitch(play, (this->actor.params & 0xFF00) >> 8 )) { // if condition is true: hasn't jumped from roof already
         //jump from roof
@@ -401,10 +400,10 @@ Actor* DetectPillar(PlayState* play, Actor* actor) {
     Actor* prop = play->actorCtx.actorLists[ACTORCAT_PROP].head;
 
     while (prop != NULL) {
-        if ((prop == actor) || (prop->id != PillarID)) {
+        if ((prop == actor) || (prop->id != ACTOR_OBJ_PILLAR)) {
             prop = prop->next;
             continue;
-        } else if (Actor_ActorAIsFacingAndNearActorB(actor, prop, 110.0f, 0x5A52)) {
+        } else if (Actor_ActorAIsFacingAndNearActorB(actor, prop, 120.0f, 0x5A52)) {
             return prop;
         }
 
@@ -530,6 +529,7 @@ void En_Asylum_Walking(EnAsylum* this, PlayState* play) {
             En_Asylum_SetupAction(this, En_Asylum_BackBonk);
             this->shieldCollider.elements[0].info.toucher.damage = this->shieldCollider.elements[1].info.toucher.damage = this->shieldCollider.elements[2].info.toucher.damage = this->shieldCollider.elements[3].info.toucher.damage = 32;
         }
+
     } else if  ( ( ( ((s16)(this->actor.yawTowardsPlayer - this->actor.world.rot.y)) >= -0x5552 ) && ( ((s16)(this->actor.yawTowardsPlayer - this->actor.world.rot.y)) < 0x0 ) )
     && ((0 <= PlayerDistance) && (PlayerDistance <= 130)) ) { //GO TO Bonk Swing 
 
@@ -541,6 +541,7 @@ void En_Asylum_Walking(EnAsylum* this, PlayState* play) {
             En_Asylum_SetupAction(this, En_Asylum_Bonk);
             this->shieldCollider.elements[0].info.toucher.damage = this->shieldCollider.elements[1].info.toucher.damage = this->shieldCollider.elements[2].info.toucher.damage = this->shieldCollider.elements[3].info.toucher.damage = 32;
         }
+
     } else if ( (ABS((s16)(this->actor.yawTowardsPlayer - this->actor.world.rot.y)) < 0xFFF) && (( 130 < PlayerDistance) && (PlayerDistance < 270)) ) { //GO TO Smash Bonk
 
         if (Rand_CenteredFloat(this->actor.xzDistToPlayer) >= 90.0) {
@@ -548,10 +549,12 @@ void En_Asylum_Walking(EnAsylum* this, PlayState* play) {
             En_Asylum_SetupAction(this, En_Asylum_BonkSmash);
             this->shieldCollider.elements[0].info.toucher.damage = this->shieldCollider.elements[1].info.toucher.damage = this->shieldCollider.elements[2].info.toucher.damage = this->shieldCollider.elements[3].info.toucher.damage = 48;
         }
+
     } else if (DetectPillar(play, &this->actor) != NULL) {
         this->timerone = 0;
         En_Asylum_SetupAction(this, En_Asylum_Bonk);
         this->shieldCollider.elements[0].info.toucher.damage = this->shieldCollider.elements[1].info.toucher.damage = this->shieldCollider.elements[2].info.toucher.damage = this->shieldCollider.elements[3].info.toucher.damage = 32;
+
     } else if ( (ABS((s16)(this->actor.yawTowardsPlayer - this->actor.world.rot.y)) > 0x5552) && (PlayerDistance < 200) ){ // GO TO buttslam 
 
         this->timerone = 0;

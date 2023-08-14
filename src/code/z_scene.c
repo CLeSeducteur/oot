@@ -192,6 +192,10 @@ void Scene_CommandPlayerEntryList(PlayState* play, SceneCmd* cmd) {
 
     gActorOverlayTable[playerEntry->id].initInfo->objectId = linkObjectId;
     Object_Spawn(&play->objectCtx, linkObjectId);
+
+    if (LINK_IS_CHILD){
+        Object_Spawn(&play->objectCtx, OBJECT_LINK_BOY);
+    }
 }
 
 void Scene_CommandActorEntryList(PlayState* play, SceneCmd* cmd) {

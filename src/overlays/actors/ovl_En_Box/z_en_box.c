@@ -249,7 +249,7 @@ void EnBox_Fall(EnBox* this, PlayState* play) {
             this->dyna.actor.shape.rot.z = 0;
             this->dyna.actor.world.pos.y = this->dyna.actor.floorHeight;
             EnBox_SetupAction(this, EnBox_WaitOpen);
-            OnePointCutscene_EndCutscene(play, this->subCamId);
+            //OnePointCutscene_EndCutscene(play, this->subCamId);
         }
         Audio_PlaySfxGeneral(NA_SE_EV_COFFIN_CAP_BOUND, &this->dyna.actor.projectedPos, 4, &gSfxDefaultFreqAndVolScale,
                              &gSfxDefaultFreqAndVolScale, &gSfxDefaultReverb);
@@ -272,7 +272,8 @@ void EnBox_FallOnSwitchFlag(EnBox* this, PlayState* play) {
 
     if (this->unk_1A8 >= 0) {
         EnBox_SetupAction(this, EnBox_Fall);
-        this->subCamId = OnePointCutscene_Init(play, 4500, 9999, &this->dyna.actor, CAM_ID_MAIN);
+        //this->subCamId = OnePointCutscene_Init(play, 4500, 9999, &this->dyna.actor, CAM_ID_MAIN);
+        //this->subCamId = NULL;
         DynaPoly_EnableCollision(play, &play->colCtx.dyna, this->dyna.bgId);
     } else if (this->unk_1A8 >= -11) {
         this->unk_1A8++;

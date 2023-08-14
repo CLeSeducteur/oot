@@ -290,11 +290,13 @@ static SceneSelectEntry sScenes[] = {
     // "125: Hyrule Garden Game 2" (Early Hyrule Garden Game)
     { "125:" GFXP_KATAKANA "ﾊｲﾗﾙ" GFXP_HIRAGANA "ﾆﾜ" GFXP_KATAKANA "ｹﾞｰﾑ2", MapSelect_LoadGame, ENTR_HAIRAL_NIWA2_0 },
     // "126: Northern Undead Asylum"
-    { "126: NorthenUndeadAsylum", MapSelect_LoadGame, ENTR_NUA_TEST_0 },
+    { "126.a: NorthenUndeadAsylum", MapSelect_LoadGame, ENTR_NUA_TEST_1 },
+    // "126: Northern Undead Asylum"
+    { "126.b: NorthenUndeadAsylum(Enter Asylum)", MapSelect_LoadGame, ENTR_NUA_TEST_0_1 },
     // "127: Firelink Shrine"
-    { "127: Firelink_Shrine", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0 },
-    // "128: Firelink Shrine (Fly To FireLink)"
-    { "128: Firelink_Shrine (Fly To Firelink)", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0_1 },
+    { "127.a: Firelink_Shrine", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0 },
+    // "127: Firelink Shrine (Fly To FireLink)"
+    { "127.b: Firelink_Shrine (Fly To Firelink)", MapSelect_LoadGame, ENTR_FIRELINKSHRINE_0_1 },
     // "title" (Title Screen)
     { "title", (void*)MapSelect_LoadTitle, 0 },
 };

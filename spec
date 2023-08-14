@@ -3389,6 +3389,24 @@ beginseg
 endseg
 
 beginseg
+    name "ovl_En_Oscar"
+    include "build/src/overlays/actors/ovl_En_Oscar/OscarNPC.o"
+    include "build/src/overlays/actors/ovl_En_Oscar/ovl_En_Oscar_reloc.o"
+endseg
+
+beginseg
+    name "ovl_Obj_Pillar"
+    include "build/src/overlays/actors/ovl_Obj_Pillar/PillarAsylum.o"
+    include "build/src/overlays/actors/ovl_Obj_Pillar/ovl_Obj_Pillar_reloc.o"
+endseg
+
+beginseg
+    name "ovl_DoorBars"
+    include "build/src/overlays/actors/ovl_DoorBars/DoorBars.o"
+    include "build/src/overlays/actors/ovl_DoorBars/ovl_DoorBars_reloc.o"
+endseg
+
+beginseg
     name "gameplay_keep"
     romalign 0x1000
     include "build/assets/objects/gameplay_keep/gameplay_keep.o"
@@ -3406,6 +3424,13 @@ beginseg
     name "object_asylum"
     romalign 0x1000
     include "build/assets/objects/object_asylum/ArmatureAsylumDemon.o"
+    number 6
+endseg
+
+beginseg
+    name "object_oscar"
+    romalign 0x1000
+    include "build/assets/objects/object_oscar/OscarArmature.o"
     number 6
 endseg
 
@@ -10634,19 +10659,5 @@ beginseg
     name "nua_test_room_14"
     romalign 0x1000
     include "build/assets/scenes/test_levels/nua_test/nua_test_room_14.o"
-    number 3
-endseg
-
-beginseg
-    name "nua_test_room_15"
-    romalign 0x1000
-    include "build/assets/scenes/test_levels/nua_test/nua_test_room_15.o"
-    number 3
-endseg
-
-beginseg
-    name "nua_test_room_16"
-    romalign 0x1000
-    include "build/assets/scenes/test_levels/nua_test/nua_test_room_16.o"
     number 3
 endseg

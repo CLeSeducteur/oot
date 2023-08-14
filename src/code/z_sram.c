@@ -258,11 +258,10 @@ static SavePlayerData sDebugSavePlayerData = {
 };
 
 static ItemEquips sDebugSaveEquips = {
-    { ITEM_SWORD_MASTER, ITEM_BOW, ITEM_BOMB, ITEM_OCARINA_FAIRY }, // buttonItems
-    { SLOT_BOW, SLOT_BOMB, SLOT_OCARINA },                          // cButtonSlots
+    { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
+    { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
     // equipment
-    (EQUIP_VALUE_SWORD_MASTER << (EQUIP_TYPE_SWORD * 4)) | (EQUIP_VALUE_SHIELD_HYLIAN << (EQUIP_TYPE_SHIELD * 4)) |
-        (EQUIP_VALUE_TUNIC_KOKIRI << (EQUIP_TYPE_TUNIC * 4)) | (EQUIP_VALUE_BOOTS_KOKIRI << (EQUIP_TYPE_BOOTS * 4)),
+    0x1100,
 };
 
 static Inventory sDebugSaveInventory = {
@@ -295,7 +294,7 @@ static Inventory sDebugSaveInventory = {
     },
     // ammo
     {
-        50, // SLOT_DEKU_STICK
+        10, // SLOT_DEKU_STICK
         50, // SLOT_DEKU_NUT
         10, // SLOT_BOMB
         30, // SLOT_BOW

@@ -116,7 +116,7 @@ void Health_InitMeter(PlayState* play) {
 
     interfaceCtx->unk_228 = 0x140;
     interfaceCtx->unk_226 = gSaveContext.health;
-    interfaceCtx->beatingHeartOscillator = interfaceCtx->heartColorOscillator = 0;
+    interfaceCtx->beatingHeartOscillator = interfaceCtx->heartColorOscillator = 10;
     interfaceCtx->beatingHeartOscillatorDirection = interfaceCtx->heartColorOscillatorDirection = 0;
 
     interfaceCtx->heartsPrimR[0] = HEARTS_PRIM_R;
@@ -474,7 +474,7 @@ void Health_DrawMeter(PlayState* play) {
                 }
             }
 
-            {
+            {/*
                 Mtx* matrix = Graph_Alloc(gfxCtx, sizeof(Mtx));
                 Matrix_SetTranslateScaleMtx2(
                     matrix, 1.0f - (0.32f * beatingHeartPulsingSize), 1.0f - (0.32f * beatingHeartPulsingSize),
@@ -482,6 +482,19 @@ void Health_DrawMeter(PlayState* play) {
                 gSPMatrix(OVERLAY_DISP++, matrix, G_MTX_MODELVIEW | G_MTX_LOAD);
                 gSPVertex(OVERLAY_DISP++, beatingHeartVtx, 4, 0);
                 gSP1Quadrangle(OVERLAY_DISP++, 0, 2, 3, 1, 0);
+            */
+                heartCenterY = 26.0f + offsetY;
+                heartCenterX = 30.0f + offsetX;
+                heartTexCoordPerPixel = 1.0f;
+                heartTexCoordPerPixel /= 0.68f;
+                heartTexCoordPerPixel *= 1 << 10;
+                halfHeartLength = 8.0f;
+                halfHeartLength *= 0.68f;
+                gSPTextureRectangle(OVERLAY_DISP++, (s32)((heartCenterX - halfHeartLength) * 4),
+                                    (s32)((heartCenterY - halfHeartLength) * 4),
+                                    (s32)((heartCenterX + halfHeartLength) * 4),
+                                    (s32)((heartCenterY + halfHeartLength) * 4), G_TX_RENDERTILE, 0, 0,
+                                    (s32)heartTexCoordPerPixel, (s32)heartTexCoordPerPixel);
             }
         }
 
@@ -489,7 +502,7 @@ void Health_DrawMeter(PlayState* play) {
         offsetX += 10.0f;
 
         // Go down one line after 10 hearts
-        if (heartIndex == 9) {
+        if (heartIndex == 9) { //kino et virable
             offsetY += 10.0f;
             offsetX = 0.0f;
         }

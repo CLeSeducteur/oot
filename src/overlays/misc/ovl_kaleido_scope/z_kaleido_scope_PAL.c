@@ -168,21 +168,61 @@ static u16 D_8082ABEC[] = {
 };
 
 u8 gSlotAgeReqs[] = {
-    1, 9, 9, 0, 0, 9, 1, 9, 9, 0, 0, 9, 1, 9, 1, 0, 0, 9, 9, 9, 9, 9, 0, 1,
+    //1, 9, 9, 0, 0, 9, 1, 9, 9, 0, 0, 9, 1, 9, 1, 0, 0, 9, 9, 9, 9, 9, 0, 1,
+    // in-game inventory order
+    9, 9, 9, 0, 0, 9,
+    1, 9, 9, 9, 0, 9,
+    9, 9, 1, 9, 0, 9,
+    9, 9, 9, 9, 0, 1,
 };
 
-u8 gEquipAgeReqs[EQUIP_TYPE_MAX][4] = {
-    { 0, 1, 0, 0 },
-    { 9, 1, 9, 0 },
+u8 gEquipAgeReqs[EQUIP_TYPE_MAX][4] = { 
+    // in-game equipment order
+    { 0, 9, 0, 0 },
+    { 9, 9, 9, 0 },
     { 0, 9, 0, 0 },
     { 9, 9, 0, 0 },
+
+
 };
 
 u8 gItemAgeReqs[] = {
+/*
     1, 9, 9, 0, 0, 9, 1, 9, 9, 9, 0, 0, 0, 9, 1, 9, 1, 0, 0, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9,
     9, 9, 9, 9, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
     0, 1, 0, 0, 1, 9, 0, 9, 0, 0, 9, 0, 0, 1, 1, 1, 0, 0, 0, 9, 9, 9, 1, 0, 0, 9, 9, 0,
 };
+*/
+    9, 9, 9, 0, 0, 9,
+    1, 9, 9, 9, 9, 9,
+    0, 9, 9, 9, 1, 9,
+    0, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 9,
+    9, 9, 9, 1, 1, 1,
+    1, 1, 1, 1, 1, 1,
+    1, 1, 1, 0, 0, 0,
+    0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0,
+    // equipment
+    9,
+    9, 9, 9, 9, 9, 9,
+    9, 9, 9, 9, 9, 1,
+    1, 1, 0, 0, 0, 9,
+    9, 9, 1, 0, 0, 9,
+    9, 0,
+};
+
+// 0 -> adult, 1 -> child, 9 -> both
+// SLOT_STICK,       SLOT_NUT,          SLOT_BOMB,        SLOT_BOW,         SLOT_ARROW_FIRE,  SLOT_DINS_FIRE,
+// SLOT_SLINGSHOT,   SLOT_OCARINA,      SLOT_OCARINA,     SLOT_BOMBCHU,     SLOT_HOOKSHOT,    SLOT_HOOKSHOT,
+// SLOT_ARROW_ICE,   SLOT_FARORES_WIND, SLOT_BOOMERANG,   SLOT_LENS,        SLOT_BEAN,        SLOT_HAMMER,
+// SLOT_ARROW_LIGHT, SLOT_NAYRUS_LOVE,  SLOT_BOTTLE_1,    SLOT_BOTTLE_1,    SLOT_BOTTLE_1,    SLOT_BOTTLE_1,
+// SLOT_BOTTLE_1,    SLOT_BOTTLE_1,     SLOT_BOTTLE_1,    SLOT_BOTTLE_1,    SLOT_BOTTLE_1,    SLOT_BOTTLE_1,
+// SLOT_BOTTLE_1,    SLOT_BOTTLE_1,     SLOT_BOTTLE_1,    SLOT_TRADE_CHILD, SLOT_TRADE_CHILD, SLOT_TRADE_CHILD,
+// SLOT_TRADE_CHILD, SLOT_TRADE_CHILD,  SLOT_TRADE_CHILD, SLOT_TRADE_CHILD, SLOT_TRADE_CHILD, SLOT_TRADE_CHILD,
+// SLOT_TRADE_CHILD, SLOT_TRADE_CHILD,  SLOT_TRADE_CHILD, SLOT_TRADE_ADULT, SLOT_TRADE_ADULT, SLOT_TRADE_ADULT,
+// SLOT_TRADE_ADULT, SLOT_TRADE_ADULT,  SLOT_TRADE_ADULT, SLOT_TRADE_ADULT, SLOT_TRADE_ADULT, SLOT_TRADE_ADULT,
+// SLOT_TRADE_ADULT, SLOT_TRADE_ADULT,
 
 u8 gAreaGsFlags[] = {
     0x0F, 0x1F, 0x0F, 0x1F, 0x1F, 0x1F, 0x1F, 0x1F, 0x07, 0x07, 0x03,

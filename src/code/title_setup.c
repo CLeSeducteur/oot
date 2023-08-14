@@ -3,6 +3,7 @@
 void Setup_InitImpl(SetupState* this) {
     osSyncPrintf("ゼルダ共通データ初期化\n"); // "Zelda common data initalization"
     SaveContext_Init();
+    Sram_InitDebugSave();
     this->state.running = false;
     SET_NEXT_GAMESTATE(&this->state, ConsoleLogo_Init, ConsoleLogoState);
 }

@@ -13660,7 +13660,7 @@ static void (*D_80854AA4[])(PlayState*, Player*, void*) = {
     func_80851050, func_80851194, func_808511B4, func_80851248, func_808512E0,
 };
 
-static struct_80832924 D_80854AF0[] = {
+static struct_80832924 D_80854AF0[] = { //Link action 0xA
     { 0, 0x2822 },
     { NA_SE_PL_CALM_HIT, 0x82D },
     { NA_SE_PL_CALM_HIT, 0x833 },
@@ -13798,7 +13798,7 @@ static struct_80854B18 D_80854E50[PLAYER_CSMODE_MAX] = {
     { 11, NULL },                                         // PLAYER_CSMODE_13
     { 11, NULL },                                         // PLAYER_CSMODE_14
     { 11, NULL },                                         // PLAYER_CSMODE_15
-    { 18, D_80854AF0 },                                   // PLAYER_CSMODE_16
+    { 11, NULL },                                         // PLAYER_CSMODE_16 { 18, D_80854AF0 }, 
     { 11, NULL },                                         // PLAYER_CSMODE_17
     { -1, func_80851A50 },                                // PLAYER_CSMODE_18
     { 12, &gPlayerAnim_link_demo_baru_op2 },              // PLAYER_CSMODE_19
@@ -13815,7 +13815,7 @@ static struct_80854B18 D_80854E50[PLAYER_CSMODE_MAX] = {
     { -1, func_80851D80 },                                // PLAYER_CSMODE_30
     { -1, func_80851DEC },                                // PLAYER_CSMODE_31
     { -1, func_80851E28 },                                // PLAYER_CSMODE_32
-    { 18, D_80854B00 },                                   // PLAYER_CSMODE_33
+    { 11, NULL },                                         // PLAYER_CSMODE_33 { 18, D_80854B00 }, 
     { -1, func_808513BC },                                // PLAYER_CSMODE_34
     { 11, NULL },                                         // PLAYER_CSMODE_35
     { 11, NULL },                                         // PLAYER_CSMODE_36
@@ -14301,7 +14301,7 @@ void func_80851E64(PlayState* play, Player* this, CsCmdActorCue* cue) {
 
 void func_80851E90(PlayState* play, Player* this, CsCmdActorCue* cue) {
     func_8083303C(play, this, &gPlayerAnim_clink_op3_negaeri, 0x9C);
-    func_80832698(this, NA_SE_VO_LI_GROAN);
+    //func_80832698(this, NA_SE_VO_LI_GROAN);
 }
 
 void func_80851ECC(PlayState* play, Player* this, CsCmdActorCue* cue) {
@@ -14349,9 +14349,9 @@ static struct_80832924 D_808551C8[] = {
     { 0, -0x4860 },
 };
 
-void func_80852048(PlayState* play, Player* this, CsCmdActorCue* cue) {
+void func_80852048(PlayState* play, Player* this, CsCmdActorCue* cue) { //anim action 1F
     LinkAnimation_Update(play, &this->skelAnime);
-    func_80832924(this, D_808551C8);
+    //func_80832924(this, D_808551C8);
 }
 
 void func_80852080(PlayState* play, Player* this, CsCmdActorCue* cue) {
