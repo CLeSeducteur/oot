@@ -258,10 +258,10 @@ static SavePlayerData sDebugSavePlayerData = {
 };
 
 static ItemEquips sDebugSaveEquips = {
-    { ITEM_NONE, ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
+    { ITEM_SWORD_KOKIRI , ITEM_NONE, ITEM_NONE, ITEM_NONE }, // buttonItems
     { SLOT_NONE, SLOT_NONE, SLOT_NONE },            // cButtonSlots
     // equipment
-    0x1100,
+    (EQUIP_VALUE_SWORD_KOKIRI << (EQUIP_TYPE_SWORD * 4)) | (EQUIP_VALUE_TUNIC_KOKIRI << (EQUIP_TYPE_TUNIC * 4)) | (EQUIP_VALUE_BOOTS_KOKIRI << (EQUIP_TYPE_BOOTS * 4)),
 };
 
 static Inventory sDebugSaveInventory = {
@@ -485,9 +485,9 @@ void Sram_OpenSave(SramContext* sramCtx) {
         default:
             if (gSaveContext.savedSceneId != SCENE_LINKS_HOUSE) {
                 gSaveContext.entranceIndex =
-                    (LINK_AGE_IN_YEARS == YEARS_CHILD) ? ENTR_LINKS_HOUSE_0 : ENTR_TEMPLE_OF_TIME_7;
+                    (LINK_AGE_IN_YEARS == YEARS_CHILD) ? ENTR_LINKS_HOUSE_0 : ENTR_NUA_TEST_1;
             } else {
-                gSaveContext.entranceIndex = ENTR_LINKS_HOUSE_0;
+                gSaveContext.entranceIndex = ENTR_NUA_TEST_1;
             }
             break;
     }
@@ -543,12 +543,12 @@ void Sram_OpenSave(SramContext* sramCtx) {
         }
     }
 
-    if (LINK_AGE_IN_YEARS == YEARS_ADULT && !CHECK_OWNED_EQUIP(EQUIP_TYPE_SWORD, EQUIP_INV_SWORD_MASTER)) {
+    /*if (LINK_AGE_IN_YEARS == YEARS_ADULT && !CHECK_OWNED_EQUIP(EQUIP_TYPE_SWORD, EQUIP_INV_SWORD_MASTER)) {
         gSaveContext.inventory.equipment |= OWNED_EQUIP_FLAG(EQUIP_TYPE_SWORD, EQUIP_INV_SWORD_MASTER);
         gSaveContext.equips.buttonItems[0] = ITEM_SWORD_MASTER;
         gSaveContext.equips.equipment &= ~(0xF << (EQUIP_TYPE_SWORD * 4));
         gSaveContext.equips.equipment |= EQUIP_VALUE_SWORD_MASTER << (EQUIP_TYPE_SWORD * 4);
-    }
+    }*/
 
     for (i = 0; i < ARRAY_COUNT(gSpoilingItems); i++) {
         if (INV_CONTENT(ITEM_TRADE_ADULT) == gSpoilingItems[i]) {
@@ -789,10 +789,10 @@ void Sram_InitSave(FileSelectState* fileSelect, SramContext* sramCtx) {
         Sram_InitDebugSave();
     }
 
-    gSaveContext.entranceIndex = ENTR_LINKS_HOUSE_0;
-    gSaveContext.linkAge = LINK_AGE_CHILD;
+    gSaveContext.entranceIndex = ENTR_NUA_TEST_1;
+    gSaveContext.linkAge = LINK_AGE_ADULT;
     gSaveContext.dayTime = CLOCK_TIME(10, 0);
-    gSaveContext.cutsceneIndex = 0xFFF1;
+    //gSaveContext.cutsceneIndex = 0xFFF1;
 
     if (fileSelect->buttonIndex == 0) {
         gSaveContext.cutsceneIndex = 0;

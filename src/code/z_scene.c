@@ -55,6 +55,7 @@ void Object_InitBank(PlayState* play, ObjectContext* objectCtx) {
     } else {
         spaceSize = 1024000;
     }
+    spaceSize += 0x9000;
 
     objectCtx->num = objectCtx->unk_09 = 0;
     objectCtx->mainKeepIndex = objectCtx->subKeepIndex = 0;
